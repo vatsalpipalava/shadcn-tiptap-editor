@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Inter, Open_Sans, Poppins, Roboto } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +31,9 @@ const open_sans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tiptap editor demo",
+  title: "tiptap/editor",
   description:
-    "Rich Text editor built with nextjs, tiptap editor and shadcn/ui. Accessible. Customizable. Open Source.",
+    "A powerful, customizable, and feature-rich text editor built with Tiptap, ShadCN UI, and Next.js. This editor provides a seamless writing experience with rich text formatting, tables, images, and more. Open Source. Open Code.",
 };
 
 export default function RootLayout({
@@ -44,7 +46,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistSans.className} ${inter.variable} ${roboto.variable} ${poppins.variable} ${open_sans.variable} antialiased`}
       >
-        {children}
+        <div vaul-drawer-wrapper="">
+          <div className="relative flex min-h-svh flex-col bg-background">
+            <div data-wrapper="" className="border-grid flex flex-1 flex-col">
+              <SiteHeader />
+              <main className="flex flex-1 flex-col">{children}</main>
+              <SiteFooter />
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

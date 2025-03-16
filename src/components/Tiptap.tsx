@@ -263,7 +263,7 @@ const Tiptap = () => {
               </table>
               <p>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax. Jokester was declared a hero, and the kingdom lived happily ever after.</p>
               <p>The moral of the story is: never underestimate the power of a good laugh and always be careful of bad ideas.</p>
-              <img src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb" />
+              <img src="https://placehold.co/1600x900?text=Image" />
               <table style="min-width: 50px">
                 <colgroup>
                   <col style="min-width: 25px" />
@@ -282,7 +282,7 @@ const Tiptap = () => {
                     </td>
                     <td colspan="1" rowspan="1">
                       <img
-                        src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&amp;cs=tinysrgb"
+                        src="https://placehold.co/900x900?text=Image in table"
                       />
                     </td>
                   </tr>
@@ -402,9 +402,10 @@ const Tiptap = () => {
   }
 
   return (
-    <div className="tiptap border rounded-lg shadow-sm max-w-6xl mx-auto relative">
+    <div className="tiptap rounded-lg shadow-sm border w-full relative">
+      {/* Toolbar */}
       <div className="relative tiptap-sub">
-        <div className="flex items-center border-b p-1 gap-1 flex-wrap bg-white sticky top-0 z-50 shadow-md">
+        <div className="flex items-center border-b p-1 gap-1 flex-wrap bg-white sticky top-0 z-50 shadow-md rounded-t-lg">
           <div className="flex items-center gap-1">
             <TooltipProvider>
               <Tooltip>
@@ -997,8 +998,6 @@ const Tiptap = () => {
         </div>
       </div>
 
-      {/* Toolbar */}
-
       {/* Editor Area */}
       <div className="min-h-[200px] px-2 py-4 bg-white overflow-auto">
         <EditorContent
@@ -1008,7 +1007,7 @@ const Tiptap = () => {
       </div>
 
       {/* Status Bar */}
-      <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 border-t bg-white">
+      <div className="flex items-center justify-between rounded-b-lg px-4 py-2 text-sm text-gray-500 border-t bg-white">
         <Dialog>
           <DialogTrigger asChild>
             <Button onClick={handleHTML} variant="outline" className="h-8">
