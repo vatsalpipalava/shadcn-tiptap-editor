@@ -24,7 +24,8 @@ export const TableCellExtension = Table.configure({
   },
 });
 
-const TableCellWithMenu = ({ editor, node, getPos }: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const TableCellWithMenu = ({ editor }: any) => {
   const isEditable = editor && editor.isEditable;
 
   const handleContextAction = (action: () => void) => {

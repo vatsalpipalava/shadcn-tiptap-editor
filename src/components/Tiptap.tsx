@@ -423,10 +423,7 @@ const Tiptap = () => {
                     <UndoIcon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Undo</p>
-                  <p>ctrl + z</p>
-                </TooltipContent>
+                <TooltipContent>Undo (Ctrl+Z)</TooltipContent>
               </Tooltip>
             </TooltipProvider>
 
@@ -444,10 +441,7 @@ const Tiptap = () => {
                     <RedoIcon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Redo</p>
-                  <p>ctrl + y</p>
-                </TooltipContent>
+                <TooltipContent>Redo (Ctrl+Y)</TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
