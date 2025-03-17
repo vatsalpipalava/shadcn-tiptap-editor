@@ -148,10 +148,10 @@
 
   table {
     border-collapse: collapse;
-    margin: 0;
+    /* margin: 0; */
     overflow: hidden;
-    table-layout: fixed;
-    width: 100%;
+    /* table-layout: fixed; */
+    /* width: 100%; */
 
     td,
     th {
@@ -175,7 +175,7 @@
     th {
       background-color: #f3f4f6;
       font-weight: bold;
-      text-align: left;
+      /* text-align: left; */
     }
 
     .selectedCell:after {

@@ -12,7 +12,7 @@ import Underline from "@tiptap/extension-underline";
 import Strike from "@tiptap/extension-strike";
 import Blockquote from "@tiptap/extension-blockquote";
 import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
+// import Image from "@tiptap/extension-image";
 import HardBreak from "@tiptap/extension-hard-break";
 import Gapcursor from "@tiptap/extension-gapcursor";
 import TextAlign from "@tiptap/extension-text-align";
@@ -107,6 +107,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { ImageExtension } from "./image";
 
 const Tiptap = () => {
   const [fontSizeInput, setFontSizeInput] = React.useState("16");
@@ -124,7 +125,7 @@ const Tiptap = () => {
       Underline,
       Strike,
       Blockquote,
-      Image,
+      ImageExtension,
       HardBreak,
       Gapcursor,
       Color,
@@ -147,6 +148,7 @@ const Tiptap = () => {
       TableRow,
       TableHeader,
       TableCell,
+      // TableCellExtension,
       Link.configure({
         openOnClick: true,
         autolink: true,
