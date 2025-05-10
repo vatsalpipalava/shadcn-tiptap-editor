@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Heading from "@tiptap/extension-heading";
@@ -99,8 +99,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 
-import prettier from "prettier/standalone";
-import parserHtml from "prettier/parser-html";
 import {
   Tooltip,
   TooltipContent,
@@ -389,15 +387,26 @@ const Tiptap = () => {
 
     const htmlText = editor.getHTML();
 
-    const formatted = await prettier.format(htmlText, {
-      parser: "html",
-      plugins: [parserHtml],
-    });
-
-    setHtmlCode(formatted);
-    // setHtmlCode(formatted.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
-    // console.log("🚀 ~ handleHTML ~ htmlText:", htmlText);
+    setHtmlCode(htmlText);
   };
+
+  const [formattedCode, setFormattedCode] = useState<string>("Loading...");
+
+  useEffect(() => {
+    const formatCode = async () => {
+      const prettier = await import("prettier/standalone");
+      const parserHtml = await import("prettier/parser-html");
+
+      const formatted = await prettier.format(htmlCode, {
+        parser: "html",
+        plugins: [parserHtml],
+      });
+
+      setFormattedCode(formatted);
+    };
+
+    formatCode();
+  }, [htmlCode]);
 
   if (!editor) {
     return null;
@@ -1016,9 +1025,8 @@ const Tiptap = () => {
             </DialogHeader>
             <pre className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 p-4">
               <code className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm text-white">
-                {htmlCode}
+                {formattedCode}
               </code>
-              {/* {htmlCode} */}
             </pre>
           </DialogContent>
         </Dialog>
