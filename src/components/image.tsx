@@ -201,7 +201,7 @@ function TiptapImage(props: NodeViewProps) {
           alt={node.attrs.alt}
           title={node.attrs.title}
         />
-        <NodeViewContent as="figcaption" className="text-center">
+        <NodeViewContent className="text-center">
           {node.attrs.title}
         </NodeViewContent>
 

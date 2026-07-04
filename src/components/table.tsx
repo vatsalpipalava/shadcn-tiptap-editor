@@ -14,7 +14,7 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 // import { TableCell as BaseTableCell } from "@tiptap/extension-table-cell";
-import Table from "@tiptap/extension-table";
+import { Table } from "@tiptap/extension-table";
 
 export const TableCellExtension = Table.configure({
   resizable: true,
@@ -52,7 +52,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().addRowBefore().run()
+                      editor.chain().addRowBefore().run(),
                     )
                   }
                 >
@@ -61,7 +61,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().addRowAfter().run()
+                      editor.chain().addRowAfter().run(),
                     )
                   }
                 >
@@ -83,7 +83,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().addColumnBefore().run()
+                      editor.chain().addColumnBefore().run(),
                     )
                   }
                 >
@@ -92,7 +92,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().addColumnAfter().run()
+                      editor.chain().addColumnAfter().run(),
                     )
                   }
                 >
@@ -101,7 +101,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().deleteColumn().run()
+                      editor.chain().deleteColumn().run(),
                     )
                   }
                 >
@@ -132,7 +132,7 @@ const TableCellWithMenu = ({ editor }: any) => {
                 <ContextMenuItem
                   onClick={() =>
                     handleContextAction(() =>
-                      editor.chain().toggleHeaderCell().run()
+                      editor.chain().toggleHeaderCell().run(),
                     )
                   }
                 >
