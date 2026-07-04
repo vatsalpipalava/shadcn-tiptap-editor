@@ -18,7 +18,7 @@ import Gapcursor from "@tiptap/extension-gapcursor";
 import TextAlign from "@tiptap/extension-text-align";
 import History from "@tiptap/extension-history";
 import Typography from "@tiptap/extension-typography";
-import TextStyle from "@tiptap/extension-text-style";
+import { TextStyle } from "@tiptap/extension-text-style";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
 import OrderedList from "@tiptap/extension-ordered-list";
@@ -26,13 +26,12 @@ import FontFamily from "@tiptap/extension-font-family";
 import { Color } from "@tiptap/extension-color";
 import CharacterCount from "@tiptap/extension-character-count";
 import Highlight from "@tiptap/extension-highlight";
-import Table from "@tiptap/extension-table";
+import { Table } from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 
 import { FontSize } from "./font-size";
-import "./tiptap.css";
 
 import {
   AlignCenterIcon,
@@ -90,7 +89,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "./ui/input";
-// import HtmlRenderer from "./HtmlRenderer";
 import {
   Dialog,
   DialogContent,
@@ -106,12 +104,16 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { ImageExtension } from "./image";
+import { Markdown } from "@tiptap/markdown";
+
+import "./tiptap.css";
 
 const Tiptap = () => {
   const [fontSizeInput, setFontSizeInput] = React.useState("16");
 
   const editor = useEditor({
     extensions: [
+      Markdown,
       Document,
       Paragraph,
       Text,
@@ -174,7 +176,7 @@ const Tiptap = () => {
 
             // only allow protocols specified in ctx.protocols
             const allowedProtocols = ctx.protocols.map((p) =>
-              typeof p === "string" ? p : p.scheme
+              typeof p === "string" ? p : p.scheme,
             );
 
             if (!allowedProtocols.includes(protocol)) {
@@ -379,6 +381,7 @@ const Tiptap = () => {
   };
 
   const [htmlCode, setHtmlCode] = useState("");
+  const [markdown, setMarkdown] = useState("");
 
   const handleHTML = async () => {
     if (!editor) {
@@ -389,6 +392,28 @@ const Tiptap = () => {
 
     setHtmlCode(htmlText);
   };
+
+  const handleMarkdown = async () => {
+    if (!editor) {
+      return null;
+    }
+
+    const markdown = editor.getMarkdown();
+
+    setMarkdown(markdown);
+  };
+
+  // const handleMarkdown = () => {
+  //   if (!editor || !editor.markdown) {
+  //     return;
+  //   }
+
+  //   try {
+  //     editor.commands.setContent(editor.get, { contentType: "markdown" });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const [formattedCode, setFormattedCode] = useState<string>("Loading...");
 
@@ -1013,23 +1038,46 @@ const Tiptap = () => {
 
       {/* Status Bar */}
       <div className="flex items-center justify-between rounded-b-lg px-4 py-2 text-sm text-gray-500 border-t bg-white">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button onClick={handleHTML} variant="outline" className="h-8">
-              Get HTML
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="!max-w-[72rem]">
-            <DialogHeader>
-              <DialogTitle>HTML</DialogTitle>
-            </DialogHeader>
-            <pre className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 p-4">
-              <code className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm text-white">
-                {formattedCode}
-              </code>
-            </pre>
-          </DialogContent>
-        </Dialog>
+        <div className="flex items-center gap-4">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button onClick={handleHTML} variant="outline" className="h-8">
+                Get HTML
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="!max-w-[72rem]">
+              <DialogHeader>
+                <DialogTitle>HTML</DialogTitle>
+              </DialogHeader>
+              <pre className="max-h-[450px] overflow-x-auto rounded-lg border bg-zinc-950 p-4">
+                <code className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm text-white">
+                  {formattedCode}
+                </code>
+              </pre>
+            </DialogContent>
+          </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                onClick={handleMarkdown}
+                variant="outline"
+                className="h-8"
+              >
+                Get Markdown
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="!max-w-[72rem]">
+              <DialogHeader>
+                <DialogTitle>Markdown</DialogTitle>
+              </DialogHeader>
+              <pre className="max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 p-4">
+                <code className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm text-white">
+                  {markdown}
+                </code>
+              </pre>
+            </DialogContent>
+          </Dialog>
+        </div>
         {editor.storage.characterCount.characters()} characters |&nbsp;
         {editor.storage.characterCount.words()} words
       </div>
